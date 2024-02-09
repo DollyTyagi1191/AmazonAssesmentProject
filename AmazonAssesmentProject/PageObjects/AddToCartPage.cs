@@ -28,7 +28,8 @@ namespace SpecflowAutoTestProject.PageObjects
         }
         public string VerifyProductIsAddedIntoCart()
         {
-            CartButton.Click();
+            IJavaScriptExecutor js = (IJavaScriptExecutor)_webDriver;
+            js.ExecuteScript("arguments[0].click();", CartButton);
             string AddedSuccessfully = addedProductNext.Text;
             return AddedSuccessfully;
         }

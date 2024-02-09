@@ -60,7 +60,7 @@ namespace SpecflowAutoTestProject.Utility
                 Console.Write(e.Message);
             }
         }
-        public void SelectElementFromList(IWebElement hamburgerMenuItem,By menuListItems string value)
+        public void SelectElementFromList(IWebElement hamburgerMenuItem,By menuListItems, string value)
         {
             IList<IWebElement> options;
             try

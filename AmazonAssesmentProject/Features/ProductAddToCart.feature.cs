@@ -116,7 +116,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("User click add to cart button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.Then("User validate added item is present in the shopping cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("User validate added item {0} is present in the shopping cart", searchProduct), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

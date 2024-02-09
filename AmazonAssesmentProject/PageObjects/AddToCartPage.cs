@@ -23,15 +23,9 @@ namespace SpecflowAutoTestProject.PageObjects
         {
             this._webDriver.SwitchTo().Window(this._webDriver.WindowHandles[1]);
             AddToCart.Click();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             _SelKeywordObj.ExplicitWaitFn(addedTocartMsg,40);
         }
-        public string VerifyProductIsAdded()
-        {
-            string AddedSuccessfully = addedProductNext.Text;
-            return AddedSuccessfully;
-        }
-
         public string VerifyProductIsAddedIntoCart()
         {
             CartButton.Click();

@@ -46,11 +46,12 @@ namespace AmazonAssesmentProject
             _addToCartObj.ClickAddToCartButton();
         }
 
-        [Then(@"User validate added item is present in the shopping cart")]
-        public void ThenUserValidateAddedItemIsPresentInTheShoppingCart()
+        [Then(@"User validate added item (.*) is present in the shopping cart")]
+        public void ThenUserValidateAddedItemIsPresentInTheShoppingCart(string productName)
         {
-            string addToCart = _addToCartObj.VerifyProductIsAdded();
-            Assert.AreEqual(addToCart, "Added to Cart");
+            string addedProduct = _addToCartObj.VerifyProductIsAddedIntoCart();
+            Assert.AreEqual(addedProduct, productName);
+
         }
     }
 }

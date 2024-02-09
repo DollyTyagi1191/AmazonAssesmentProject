@@ -1,11 +1,5 @@
-﻿
-
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿using OpenQA.Selenium;
 using SpecflowAutoTestProject.Utility;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SpecflowAutoTestProject.PageObjects
 {    
@@ -21,8 +15,9 @@ namespace SpecflowAutoTestProject.PageObjects
         private IWebElement SearchInput => _webDriver.FindElement(By.Id("twotabsearchtextbox"));
         private IWebElement SearchButton => _webDriver.FindElement(By.Id("nav-search-submit-button"));
         private IWebElement SearchResultText => _webDriver.FindElement(By.XPath("//span[contains(@class,'a-color-state')]"));
-        private IWebElement SearchProduct => _webDriver.FindElement(By.XPath("//div[@class='s-main-slot s-result-list s-search-results sg-row']"));
-            
+        private IWebElement SearchProductDiv => _webDriver.FindElement(By.XPath("//div[@class='s-main-slot s-result-list s-search-results sg-row']"));
+
+        private By ProductList = By.XPath("//div[@class='puisg-col-inner']//h2/a/span");
         public void EnterSearchKeyword(string searchProduct)
         { 
             SearchInput.SendKeys(searchProduct);
@@ -38,7 +33,7 @@ namespace SpecflowAutoTestProject.PageObjects
         }
         public void SelectProductFromList(string firstProduct)
         {
-            SeKeywords.SelectElementFromWebPage(SearchProduct, firstProduct);
+            SeKeywords.SelectElementFromWebPage(SearchProductDiv,ProductList, firstProduct);
         }
     }
 }

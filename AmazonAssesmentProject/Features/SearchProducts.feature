@@ -5,11 +5,11 @@ for multiple products
 
 @tag1
 Scenario: Validate amazon logo and search functionality 
-	Given I have navigated to Amazon website
-	And I have entered <Search Product> in search input
-	When I press the search button
-	Then I validate Amazon logo in top left corner
-	And I validate <Expected result> in Search result info bar
+	Given User have navigated to Amazon website
+	And User have entered <Search Product> in search input
+	When User press the search button
+	Then User validate Amazon logo in top left corner
+	And User validate <Expected result> in Search result info bar
 	Examples:
 	| Search Product|  Expected result |
 	| Toy           |       Toy        |

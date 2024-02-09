@@ -1,18 +1,6 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium.Chrome;
-using System.Diagnostics;
-using NUnit.Framework;
-using TechTalk.SpecFlow.BindingSkeletons;
-using TechTalk.SpecFlow.CommonModels;
-using OpenQA.Selenium.Interactions;
 
 namespace SpecflowAutoTestProject.Utility
 {
@@ -51,13 +39,13 @@ namespace SpecflowAutoTestProject.Utility
             wait.Until(ExpectedConditions.ElementIsVisible(Element));
         }
         
-        public static void SelectElementFromWebPage(IWebElement productList,string value)
+        public static void SelectElementFromWebPage(IWebElement searchProductDiv,By productList,string value)
         {
            IList<IWebElement> options;
             try
             {
-                IWebElement ul = productList;
-                options = ul.FindElements(By.XPath("//div[@class='puisg-col-inner']//h2/a"));
+                IWebElement ul = searchProductDiv;
+                options = ul.FindElements(productList);
                 foreach (IWebElement option in options)
                 {
                     if (value.Contains(option.Text))
@@ -71,15 +59,14 @@ namespace SpecflowAutoTestProject.Utility
             {
                 Console.Write(e.Message);
             }
-
         }
-        public void SelectElementFromList(IWebElement hamburgerMenuItem, string value)
+        public void SelectElementFromList(IWebElement hamburgerMenuItem,By menuListItems string value)
         {
             IList<IWebElement> options;
             try
             {
                 IWebElement ul = hamburgerMenuItem;
-                options = ul.FindElements(By.XPath("//a[@class='hmenu-item']/div"));
+                options = ul.FindElements(menuListItems);
                 foreach (IWebElement option in options)
                 {
                     if (value.Equals(option.Text))

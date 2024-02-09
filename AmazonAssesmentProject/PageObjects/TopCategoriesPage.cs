@@ -1,10 +1,5 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using SpecflowAutoTestProject.Utility;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Linq;
 
 namespace SpecflowAutoTestProject.PageObjects
 {
@@ -25,6 +20,7 @@ namespace SpecflowAutoTestProject.PageObjects
         private IWebElement OfficeLogo => _webDriver.FindElement(By.XPath("//img[@alt='Office']"));
         private IWebElement ELearning => _webDriver.FindElement(By.XPath("//img[@alt='Elearning']"));
 
+        By menuButtons = By.XPath("//a[@class='hmenu-item']/div");
         public void ClickHamburgerMenuButton()
         {
             hamburgerMenuPanel.Click();
@@ -33,7 +29,7 @@ namespace SpecflowAutoTestProject.PageObjects
         public void SelectHamburgerMenuOption(string itemValue)
         {
             _SelKeywordObj.ExplicitWaitFn(By.Id("nav-hamburger-menu"), 20);
-            _SelKeywordObj.SelectElementFromList(hamburgerMenuItem, itemValue);
+            _SelKeywordObj.SelectElementFromList(hamburgerMenuItem, menuButtons,itemValue);
             Thread.Sleep(1000);
         }
         public void ClickSoftware()

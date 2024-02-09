@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using AventStack.ExtentReports.Gherkin.Model;
 using BoDi;
 using TechTalk.SpecFlow;
+using System.Reflection;
 
 namespace AmazonAssesmentProject
 {
@@ -50,6 +51,7 @@ namespace AmazonAssesmentProject
             TestBase.GetWebDriver=driver;
             driver.Manage().Window.Maximize();           
             _scenario = _feature.CreateNode<Scenario>(scenarioContext.ScenarioInfo.Title);
+
         }
 
         [AfterScenario]
@@ -58,6 +60,34 @@ namespace AmazonAssesmentProject
             Console.WriteLine("Running after scenario...");
             driver.Quit();     
            
+        }
+        [AfterStep]
+        public void InsertReportingSteps(ScenarioContext sc)
+        {
+            var stepType = ScenarioStepContext.Current.StepInfo.StepDefinitionType.ToString();
+            PropertyInfo pInfo = typeof(ScenarioContext).GetProperty("ScenarioExecutionStatus", BindingFlags.Instance | BindingFlags.Public);
+            if (sc.TestError == null)
+            {
+                if (stepType == "Given")
+                    _scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Pass("");
+                else if (stepType == "When")
+                    _scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Pass("");
+                else if (stepType == "Then")
+                    _scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Pass("");
+                else if (stepType == "And")
+                    _scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text).Pass("");
+            }
+            if (sc.TestError != null)
+            {
+                if (stepType == "Given")
+                    _scenario.CreateNode<Given>(ScenarioStepContext.Current.StepInfo.Text).Fail(sc.TestError.Message);
+                if (stepType == "When")
+                    _scenario.CreateNode<When>(ScenarioStepContext.Current.StepInfo.Text).Fail(sc.TestError.Message);
+                if (stepType == "Then")
+                    _scenario.CreateNode<Then>(ScenarioStepContext.Current.StepInfo.Text).Fail(sc.TestError.Message);
+                if (stepType == "And")
+                    _scenario.CreateNode<And>(ScenarioStepContext.Current.StepInfo.Text).Fail(sc.TestError.Message);
+            }
         }
     }
 }

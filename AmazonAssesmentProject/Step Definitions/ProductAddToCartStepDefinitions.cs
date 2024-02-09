@@ -1,8 +1,6 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using SpecflowAutoTestProject.PageObjects;
-using System;
 using TechTalk.SpecFlow;
 
 namespace AmazonAssesmentProject
@@ -22,34 +20,34 @@ namespace AmazonAssesmentProject
             _searchPageObj=new SearchPage(this._webDriver);
             _addToCartObj=new AddToCartPage(this._webDriver);
         }
-        private const string AmazonUrl = "https://www.amazon.in";
         
-        [Given(@"I have navigated to Amazon website")]
-        public void GivenIHaveNavigatedToAmazonWebsite()
+        [Given(@"User have navigated to Amazon website")]
+        public void GivenUserHaveNavigatedToAmazonWebsite()
         {
             _homePageObj.NavigateToApplication();
         }
 
-        [When(@"I press the search button")]
-        public void WhenIPressTheSearchButton()
+        [When(@"User press the search button")]
+        public void WhenUserPressTheSearchButton()
         {
             _searchPageObj.ClickSearchButton();
         }
 
-        [When(@"I select (.*) from list")]
-        public void WhenISelectProductFromList(string productName)
+        [When(@"User select (.*) from list")]
+        public void WhenUserSelectProductFromList(string productName)
         {
+            Thread.Sleep(1000);
             _searchPageObj.SelectProductFromList(productName);
         }
 
-        [When(@"I click add to cart button")]
-        public void WhenIClickAddToCartButton()
+        [When(@"User click add to cart button")]
+        public void WhenUserClickAddToCartButton()
         {
             _addToCartObj.ClickAddToCartButton();
         }
 
-        [Then(@"I validate added item is present in the shopping cart")]
-        public void ThenIValidateAddedItemIsPresentInTheShoppingCart()
+        [Then(@"User validate added item is present in the shopping cart")]
+        public void ThenUserValidateAddedItemIsPresentInTheShoppingCart()
         {
             string addToCart = _addToCartObj.VerifyProductIsAdded();
             Assert.AreEqual(addToCart, "Added to Cart");

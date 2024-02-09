@@ -1,12 +1,5 @@
-﻿using AmazonAssesmentProject;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿using OpenQA.Selenium;
 using SpecflowAutoTestProject.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpecflowAutoTestProject.PageObjects
 {
@@ -24,6 +17,7 @@ namespace SpecflowAutoTestProject.PageObjects
         //Finding web elements 
         private IWebElement AmazonLogo => _webDriver.FindElement(By.Id("nav-logo-sprites"));
 
+       
         public void NavigateToApplication()
         {
             _SelKeywordObj.ImplicitWaitFn(20);

@@ -1,7 +1,6 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using SpecflowAutoTestProject.PageObjects;
-using System;
 using TechTalk.SpecFlow;
 
 namespace AmazonAssesmentProject
@@ -9,7 +8,6 @@ namespace AmazonAssesmentProject
     [Binding]
     public class VerifyLogoTopCategoriesStepDefinitions : TestBase
     {
-       // private IWebDriver _webDriver;
         TopCategoriesPage _topCategoryPageObject;
         private IWebDriver _webDriver;
         public VerifyLogoTopCategoriesStepDefinitions()
@@ -18,26 +16,27 @@ namespace AmazonAssesmentProject
             _topCategoryPageObject = new TopCategoriesPage(this._webDriver);
         }
         
-        [Given(@"I have selected hamburger menu button from the navigation bar")]
-        public void GivenIHaveSelectedHamburgerMenuButtonFromTheNavigationBar()
+        [Given(@"User have selected hamburger menu button from the navigation bar")]
+        public void GivenUserHaveSelectedHamburgerMenuButtonFromTheNavigationBar()
         {
             _topCategoryPageObject.ClickHamburgerMenuButton();
         }
 
-        [When(@"I select (.*) options")]
-        public void WhenISelectMobilesComputersOptions(string menuItem)
+        [When(@"User select (.*) options")]
+        public void WhenUserSelectMobilesComputersOptions(string menuItem)
         {
+            Thread.Sleep(1000);
             _topCategoryPageObject.SelectHamburgerMenuOption(menuItem);
         }
 
-        [When(@"I select Software option")]
-        public void WhenISelectSoftwareOption()
+        [When(@"User select Software option")]
+        public void WhenUserSelectSoftwareOption()
         {
             _topCategoryPageObject.ClickSoftware();
         }
 
-        [Then(@"I validate logo is present under Top categories section")]
-        public void ThenIValidateLogoIsPresentUnderTopCategoriesSection()
+        [Then(@"User validate logo is present under Top categories section")]
+        public void ThenUserValidateLogoIsPresentUnderTopCategoriesSection()
         {
             Assert.IsTrue(_topCategoryPageObject.VerifyTopCategoriesLogo());
         }

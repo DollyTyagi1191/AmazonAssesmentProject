@@ -1,8 +1,6 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using SpecflowAutoTestProject.PageObjects;
-using System;
 using TechTalk.SpecFlow;
 
 namespace AmazonAssesmentProject
@@ -21,21 +19,21 @@ namespace AmazonAssesmentProject
             _homePageObject=new HomePage(this._webDriver);
         }
 
-        [Given(@"I have entered (.*) in search input")]
-        public void GivenIHaveEnteredKeywordInSearchInput(string searchProduct)
+        [Given(@"User have entered (.*) in search input")]
+        public void GivenUserHaveEnteredKeywordInSearchInput(string searchProduct)
         {
             _searchPageObject.EnterSearchKeyword(searchProduct);
         }
 
-        [Then(@"I validate Amazon logo in top left corner")]
-        public void ThenIValidateAmazonLogoInTopLeftCorner()
+        [Then(@"User validate Amazon logo in top left corner")]
+        public void ThenUserValidateAmazonLogoInTopLeftCorner()
         {
             Boolean actualResult = _homePageObject.VerifyAmazonLogo();
             Assert.IsTrue(actualResult);
         }
 
-        [Then(@"I validate (.*) in Search result info bar")]
-        public void ThenIValidateInSearchResultInfoBar(string expectedResult)
+        [Then(@"User validate (.*) in Search result info bar")]
+        public void ThenUserValidateInSearchResultInfoBar(string expectedResult)
         {
             string actualResult = _searchPageObject.GetSearchResult();
             Assert.AreEqual(actualResult, expectedResult);

@@ -4,8 +4,8 @@ as a user I want to verify logo for selected categories
 
 @tag1
 Scenario: Validate image logo for selected categories
-	Given I have navigated to Amazon website
-	And I have selected hamburger menu button from the navigation bar
-	When I select Mobiles, Computers options
-	And I select Software option
-	Then I validate logo is present under Top categories section
+	Given User have navigated to Amazon website
+	And User have selected hamburger menu button from the navigation bar
+	When User select Mobiles, Computers options
+	And User select Software option
+	Then User validate logo is present under Top categories section
